@@ -1,5 +1,14 @@
 @extends('Dashboard::master')
 
+@section('breadcrumb')
+    <li>
+        <a href="{{route('category.index')}}" title="دسته بندی">دسته بندی</a>
+    </li>
+    <li>
+        <a href="#" title="ویرایش دسته بندی">ویرایش دسته بندی</a>
+    </li>
+@endsection
+
 @section('styles')
 @endsection
 

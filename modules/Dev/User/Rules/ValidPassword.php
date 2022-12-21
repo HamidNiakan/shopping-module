@@ -35,6 +35,6 @@ class ValidPassword implements Rule
      */
     public function message()
     {
-        return 'رمزعبوباید شامل حرف برزگ و کوچک انگلیسی و علامت خاص باشد و همچنین طول ان باید 8 کاراکتر باشد';
+        return 'The password must contain uppercase and lowercase English letters and special symbols, and its length must be 8 characters';
     }
 }

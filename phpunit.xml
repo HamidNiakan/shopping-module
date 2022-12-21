@@ -17,6 +17,9 @@
         <testsuite name="Unit">
             <directory suffix="Test.php">./modules/Dev/User/Tests/Unit</directory>
         </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./modules/Dev/Category/Tests/Feature</directory>
+        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>

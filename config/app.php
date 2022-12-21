@@ -156,8 +156,7 @@ return [
 		Illuminate\Translation\TranslationServiceProvider::class ,
 		Illuminate\Validation\ValidationServiceProvider::class ,
 		Illuminate\View\ViewServiceProvider::class ,
-		\Dev\User\Providers\UserServiceProvider::class ,
-		\Dev\Dashboard\Providers\DashboardServiceProvider::class ,
+		Spatie\Permission\PermissionServiceProvider::class ,
 		/*
 		 * Package Service Providers...
 		 */
@@ -169,7 +168,13 @@ return [
 		// App\Providers\BroadcastServiceProvider::class,
 		App\Providers\EventServiceProvider::class ,
 		App\Providers\RouteServiceProvider::class ,
-		\Dev\Category\Providers\CategoryServiceProvider::class
+		\Dev\Dashboard\Providers\DashboardServiceProvider::class ,
+		\Dev\User\Providers\UserServiceProvider::class ,
+		\Dev\Category\Providers\CategoryServiceProvider::class ,
+		\Dev\RolePermission\Providers\RolePermissionServiceProvider::class ,
+		\Dev\Course\Providers\CourseServiceProvider::class,
+		\Dev\Media\Providers\MediaServiceProvider::class,
+		Intervention\Image\ImageServiceProvider::class
 	] ,
 	/*
 	|--------------------------------------------------------------------------
@@ -182,7 +187,8 @@ return [
 	|
 	*/
 	'aliases' => Facade::defaultAliases()
-					   ->merge([// 'ExampleClass' => App\Example\ExampleClass::class,
+					   ->merge([
+								   'Image' => Intervention\Image\Facades\Image::class,
 							   ])
 					   ->toArray() ,
 ];

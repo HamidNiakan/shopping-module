@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use Dev\Category\Http\Controllers\CategoryController as category;
 Route::controller(category::class)
-	->middleware(['web','auth','verified'])
+	->middleware(['web','auth'])
 	->name('category.')
 	->group(function () {
 	Route::get('category','index')->name('index');

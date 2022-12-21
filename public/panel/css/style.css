@@ -620,6 +620,9 @@ textarea {
 .sidebar__nav .i-users a::before {
     content: "\E136";
 }
+.sidebar__nav .i-role-permissions a::before {
+    content: "\e084";
+}
 
 .sidebar__nav .i-categories a::before {
     content: "\E028";
@@ -1431,6 +1434,16 @@ span.tagRemove:hover {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    padding-right: 35px;
+}
+.list-permission {
+    list-style: none;
+}
+.list-permission > li {
+    margin-bottom: 10px;
+}
+.invalid-feedback {
+    color: #dd2b45;
 }
 
 .ui-checkbox input {

@@ -5,13 +5,17 @@ namespace Dev\User\Models;
 use Dev\User\Notifications\ResetPasswordRequestNotification;
 use Dev\User\Notifications\VerifyMailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail {
-	use HasApiTokens , HasFactory , Notifiable;
+	use HasApiTokens , Notifiable;
+	use HasFactory;
+	use HasRoles;
 	
 	/**
 	 * The attributes that are mass assignable.
@@ -22,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail {
 		'name' ,
 		'email' ,
 		'password' ,
-		'mobile',
+		'mobile' ,
 	];
 	/**
 	 * The attributes that should be hidden for
@@ -50,5 +54,9 @@ class User extends Authenticatable implements MustVerifyEmail {
 	
 	public function sendResetPasswordNotification () {
 		return $this->notify(new ResetPasswordRequestNotification());
+	}
+	
+	public function scopeTeacher(Builder $builder) {
+		return $builder->role('teacher');
 	}
 }

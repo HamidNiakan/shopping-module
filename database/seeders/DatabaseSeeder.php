@@ -2,18 +2,20 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        // \App\Models\User::factory(10)->create();
-    }
+class DatabaseSeeder extends Seeder {
+	public static array $seeders = [];
+	
+	/**
+	 * Seed the application's database.
+	 *
+	 * @return void
+	 */
+	public function run () {
+		
+		foreach ( self::$seeders as $seed ) {
+			$this->call($seed);
+		}
+	}
 }

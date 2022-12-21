@@ -28,14 +28,14 @@ class LoginTest extends TestCase
 		$this->withoutExceptionHandling();
 			$response = $this->loginWithEmail();
 			$this->assertAuthenticated();
-			$response->assertRedirect(route('home'));
+			$response->assertRedirect(route('dashboard.home'));
 	}
 	
 	public function test_user_can_login_mobile()
 	{
 		$response = $this->loginWithMobile();
 		$this->assertAuthenticated();
-		$response->assertRedirect(route('home'));
+		$response->assertRedirect(route('dashboard.home'));
 	}
 	
 	protected function loginWithEmail() {

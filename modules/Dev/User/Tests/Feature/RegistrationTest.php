@@ -27,13 +27,13 @@ class RegistrationTest extends TestCase {
 	 */
 	public function test_user_can_register () {
 		$response = $this->registerNewUser();
-		$response->assertRedirect(route('home'));
+		$response->assertRedirect(route('dashboard.home'));
 		$this->assertCount(1 , User::all());
 	}
 	
 	public function test_user_have_to_verify_account () {
 		$this->registerNewUser();
-		$response = $this->get(route('home'));
+		$response = $this->get(route('dashboard.home'));
 		$response->assertRedirect(route('verification.notice'));
 	}
 	
@@ -43,22 +43,21 @@ class RegistrationTest extends TestCase {
 		auth()
 			->user()
 			->markEmailAsVerified();
-		$response = $this->get(route('home'));;
-		$response->assertOk();
+		
+		$this->get(route('dashboard.home'))
+			 ->assertOk();
 	}
 	
-	public function test_user_can_verify_account()
-	{
-		$this->registerNewUser();
-		$user = auth()->user();
+	public function test_user_can_verify_account () {
+		$user = $this->createUser();
 		$code = VerifyCodeService::generateCode();
 		auth()->loginUsingId($user->id);
 		$this->assertAuthenticated();
-		$this->post(route('verification.verify'),[
-			'verify_code' => $code
+		$this->post(route('verification.verify') , [
+			'verify_code' => $code,
 		]);
-		
-		$this->assertEquals(true,$user->fresh()->markEmailAsVerified());
+		$this->assertEquals(true , $user->fresh()
+										->markEmailAsVerified());
 	}
 	
 	public function registerNewUser () {
@@ -69,5 +68,15 @@ class RegistrationTest extends TestCase {
 			'password' => 'H@mid2008' ,
 			'password_confirmation' => 'H@mid2008' ,
 		]);
+	}
+	
+	public function createUser() {
+		return User::query()->create([
+										 'name' => $this->faker->name ,
+										 'email' => $this->faker->email ,
+										 'mobile' => '9178223037' ,
+										 'password' => 'H@mid2008' ,
+										 'password_confirmation' => 'H@mid2008' ,
+									 ]);
 	}
 }

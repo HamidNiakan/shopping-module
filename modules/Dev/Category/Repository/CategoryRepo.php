@@ -4,7 +4,7 @@ namespace Dev\Category\Repository;
 
 use Dev\Category\Models\Category;
 
-class CategoryRepo {
+class  CategoryRepo {
 	public function all () {
 		return Category::all();
 	}
